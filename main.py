@@ -451,7 +451,7 @@ def main():
     blur_frame.grid(row=0, column=0, padx=10, pady=10)
 
     global BLUR_RADIUS
-    BLUR_RADIUS = customtkinter.IntVar(value=5)
+    BLUR_RADIUS = customtkinter.IntVar(value=1)
     BLUR_RADIUS.trace_add("write", lambda *args: (refresh_all_chain()))
     blur_header = customtkinter.CTkLabel(
         master=blur_frame, text="Blur Radius")
@@ -459,9 +459,12 @@ def main():
     blur_reset_button = customtkinter.CTkButton(
         master=blur_frame, text="Reset", command=reset_blur)
     blur_reset_button.grid(row=1, column=1, padx=10, pady=10)
+    blur_value_input = customtkinter.CTkEntry(
+        master=blur_frame, textvariable=BLUR_RADIUS)
+    blur_value_input.grid(row=2, column=0, padx=10, pady=10, columnspan=2)
     blur_slider = customtkinter.CTkSlider(
-        master=blur_frame, from_=1, to=50, variable=BLUR_RADIUS)
-    blur_slider.grid(row=2, column=0, padx=10, pady=10, columnspan=2)
+        master=blur_frame, from_=0, to=10, variable=BLUR_RADIUS)
+    blur_slider.grid(row=3, column=0, padx=10, pady=10, columnspan=2)
 
     global SLIDERS_FRAME
     SLIDERS_FRAME = customtkinter.CTkFrame(master=settings_frame, width=200)
